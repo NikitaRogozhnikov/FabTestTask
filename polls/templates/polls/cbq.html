@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Index{% endblock %}
+{% block content %}
+<h1>Вопрос с множественным выбором</h1>
+<form method="post" name="rb">
+    {% csrf_token %}
+    <p><b>Ваш вопрос:</b><br>
+    <input type="text" name="question"><br>
+    <br>
+    <p>Варианты ответа:</p>
+    <div ID="answer">
+        <span><strong>Вариант 1: </strong><input type="text" name="answer" size="45"><br></span>
+        <input type="button" class="btn btn-outline-secondary" value="+" onClick="AddItem();" ID="add">
+    </div>
+    <br>
+    <input type="submit" class="btn btn-light" value="Отправить">
+</form>
+{% csrf_token %}
+<script>
+    var items=1;
+    function AddItem() {
+      div=document.getElementById("answer");
+      button=document.getElementById("add");
+      items++;
+      newitem="<strong>Вариант " + items + ": </strong>";
+      newitem+="<input type=\"text\" name=\"answer";
+      newitem+="\" size=\"45\"><br>";
+      newnode=document.createElement("span");
+      newnode.innerHTML=newitem;
+      div.insertBefore(newnode,button);
+    }
+
+</script>
+{% endblock %}

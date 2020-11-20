@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% block title %}Index{% endblock %}
+{% block content %}
+<h1>Выберете ти вопроса</h1>
+    <a class="btn btn-light" href="{% url 'polls:text' %}" id="defaultOpen"> TextInput</a><br>
+    <a class=" btn btn-light" href="{% url 'polls:rb' %}"> RadioButton</a><br>
+    <a class=" btn btn-light" href="{% url 'polls:cb' %}"> CheckBox</a><br>
+  
+<!--
+   <a name='q' class="btn btn-light" href="{% url 'polls:text' %}" id="defaultOpen"> TextInput</a><br>
+    <a class=" btn btn-light" href="{% url 'polls:rb' %}"> RadioButton</a><br>
+    <a class=" btn btn-light" href="{% url 'polls:cb' %}"> CheckBox</a><br>
+  
+<div class="tab">
+    <button class="tablinks btn btn-outline-secondary" id="defaultOpen" onclick="answertype(event, 'TextInput')">TextInput</button>
+    <button class="tablinks btn btn-outline-secondary" onclick="answertype(event, 'RadioButton')">RadioButton</button>
+    <button class="tablinks btn btn-outline-secondary" onclick="answertype(event, 'CheckBox')">CheckBox</button>
+  </div>
+  
+  
+  <div id="TextInput" class="tabcontent">
+    <h3>TextInput</h3>
+    
+    <form method="post">
+        {% csrf_token %}
+        <p><b>Ваше вопрос:</b><br>
+        <input type="text" name="question"><br>
+        <br>
+        <input type="submit" class="btn btn-light" value="Отправить">
+    </form>
+
+  </div>
+  
+  <div id="RadioButton" class="tabcontent">
+    <h3>RadioButton</h3>
+    <input type="radio" name="browser" value="ie">
+    <input type="radio" name="browser" value="ie">
+    <input type="radio" name="browser" value="ie">
+    
+    <form method="post" name="rb">
+        {% csrf_token %}
+        <p><b>Ваше вопрос:</b><br>
+        <input type="text" name="question"><br>
+        <br>
+        <p>Варианты ответа:</p>
+        <div ID="items">
+            <span><strong>Поле 1: </strong><input type="text" name="item1" size="45"><br></span>
+            <br> <input type="button" class="btn btn-outline-secondary" value="+" onClick="AddItem();" ID="add">
+            <input type="button" class="btn btn-outline-secondary" value="-" onClick="RemoveItem();" ID="rem">
+        </div>
+        <br>
+        <input type="submit" class="btn btn-light" value="Отправить">
+    </form>
+  </div>
+  
+  <div id="CheckBox" class="tabcontent">
+    <h3>CheckBox</h3>
+    <input type="checkbox" name="browser" value="ie">
+    <input type="checkbox" name="browser" value="ie">
+    <input type="checkbox" name="browser" value="ie">
+    
+    <form method="post" name="cb">
+        {% csrf_token %}
+        <p><b>Ваше вопрос:</b><br>
+        <input type="text" name="question"><br>
+        <br>
+        <p>Варианты ответа:</p>
+        <div ID="items">
+            <span><strong>Поле 1: </strong><input type="text" name="item1" size="45"><br></span>
+            <br> <input type="button" class="btn btn-outline-secondary" value="+" onClick="AddItem();" ID="add">
+            <input type="button" class="btn btn-outline-secondary" value="-" onClick="RemoveItem();" ID="rem">
+        </div>
+        <br>
+        <input type="submit" class="btn btn-light" value="Отправить">
+    </form>
+  </div>
+
+  {% csrf_token %}
+  <script>
+
+    function answertype(evt, cityName) {
+        // Declare all variables
+        var i, tabcontent, tablinks;
+    
+        // Get all elements with class="tabcontent" and hide them
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+    
+        // Get all elements with class="tablinks" and remove the class "active"
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+    
+        // Show the current tab, and add an "active" class to the button that opened the tab
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+
+    }
+    document.getElementById("defaultOpen").click();
+
+    var items=1;
+    function AddItem() {
+      div=document.getElementById("items");
+      button=document.getElementById("add");
+      items++;
+      newitem="<strong>Поле " + items + ": </strong>";
+      newitem+="<input type=\"text\" name=\"item" + items;
+      newitem+="\" size=\"45\"><br>";
+      newnode=document.createElement("span");
+      newnode.innerHTML=newitem;
+      div.insertBefore(newnode,button);
+    }
+
+
+  </script>
+-->
+{% endblock %}

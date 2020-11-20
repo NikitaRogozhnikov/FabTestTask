@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Index{% endblock %}
+{% block content %}
+<h1>Вопрос с единственным выбором</h1>
+<form method="post" name="rb">
+    {% csrf_token %}
+    <p><b>Ваш вопрос:</b><br>
+    <input type="text" name="question"><br>
+    <br>
+    <p>Варианты ответа:</p>
+    <div ID="items">
+        <span><strong>Поле 1: </strong><input type="text" name="item1" size="45"><br></span>
+        <br> <input type="button" class="btn btn-outline-secondary" value="+" onClick="AddItem();" ID="add">
+    </div>
+    <br>
+    <input type="submit" class="btn btn-light" value="Отправить">
+</form>
+{% csrf_token %}
+<script>
+    var items=1;
+    function AddItem() {
+      div=document.getElementById("items");
+      button=document.getElementById("add");
+      items++;
+      newitem="<strong>Поле " + items + ": </strong>";
+      newitem+="<input type=\"text\" name=\"item" + items;
+      newitem+="\" size=\"45\"><br>";
+      newnode=document.createElement("span");
+      newnode.innerHTML=newitem;
+      div.insertBefore(newnode,button);
+    }
+    
+
+
+
+</script>
+{% endblock %}

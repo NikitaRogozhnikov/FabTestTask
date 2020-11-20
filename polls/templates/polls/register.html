@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Register{% endblock %}
+{% block content %}
+    <h1>Регистрация</h1>
+    <!--
+    <form method="post">
+        {% csrf_token %}
+        Имя пользователя: <input type="text" name="username"><br>
+        Email: <input type="email" name="email"><br>
+        Пароль: <input type="password" name="password"><br>
+        Пароль еще раз: <input type="password" name="password2"><br>
+
+        <input type="submit" value="Регистрация">
+    </form>
+    -->
+    {% if error %}
+    <div style="color:red;">{{ error }}</div>
+    {% endif %}
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>Имя пользователя</label>
+            <input type="text" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email</label>
+          <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+
+        <div class="form-group">
+          <label for="exampleInputPassword1">Пароль</label>
+          <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputPassword2">Повторите пароль</label>
+            <input type="password" name="password2" class="form-control" id="exampleInputPassword1">
+          </div>
+        <button type="submit" class="btn btn-lg btn-secondary">Submit</button>
+      </form>
+        
+{% endblock %}

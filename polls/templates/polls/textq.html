@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Index{% endblock %}
+{% block content %}
+<h1>Вопрос с индивидуальным ответом</h1>
+<form method="post" name="rb">
+    {% csrf_token %}
+    <p><b>Ваш вопрос:</b><br>
+    <input type="text" name="question"><br>
+    <br>
+    <input type="submit" class="btn btn-light" value="Отправить">
+</form>
+{% endblock %}

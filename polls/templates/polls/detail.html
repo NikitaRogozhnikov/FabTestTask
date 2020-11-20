@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Index{% endblock %}
+{% block content %}
+<main role="main" class="inner cover">
+  <h1 class="cover-heading">{{ title }}</h1>
+  <h1>{{ques_type}}</h1>
+</main>
+
+{% if error %}
+<div style="color:red;">{{ error }}</div>
+{% endif %}
+{% if ques_type == "text" %}
+  <form method="POST">
+    {% csrf_token %}
+    <h3>Пройти анонимно? <td><input type="checkbox" value="anon" name="anon"></td></h3>
+    <textarea name="answer" id="" cols="30" rows="10"></textarea><br>
+    <button type="submit" class="btn btn-lg btn-secondary">Ответить</button>
+  </form>
+
+{%elif ques_type == "check" %}
+<form method="POST">
+  {% csrf_token %}
+    <h3>Пройти анонимно? <td><input type="checkbox" value="anon" name="anon"></td></h3>
+    {% for ch in ques.choice_set.all %}
+    <p><input type="checkbox" name="answer" value="{{ch}}"> {{ch.title}}</p>
+    {%endfor%}
+  <button type="submit" class="btn btn-lg btn-secondary">Ответить</button>
+</form>
+{%elif ques_type == "radio" %}
+<form method="POST">
+  {% csrf_token %}
+    <h3>Пройти анонимно? <td><input type="checkbox" value="anon" name="anon"></td></h3>
+    {% for ch in ques.choice_set.all %}
+    <p><input type="radio" name="answer" value="{{ch}}"> {{ch.title}}</p>
+    {%endfor%}   
+  <button type="submit" class="btn btn-lg btn-secondary">Ответить</button>
+</form>
+{%endif%}
+{% endblock %}

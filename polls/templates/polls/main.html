@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Index{% endblock %}
+{% block content %}
+{%if user.username == ''%}
+<main role="main" class="inner cover">
+  <h1 class="cover-heading">Здравствуйте!</h1>
+  <p class="lead">Для того чтобы участвовать в опросах нужно войти или зарегистрироваться.</p>
+  <p>{{ num_visits }}</p>
+  <a href="{% url 'polls:login' %}" class="btn btn-lg btn-secondary">Войти</a>
+  <a href="{% url 'polls:register' %}" class="btn btn-lg btn-secondary">Зарегистрироваться</a>
+  
+</main>
+{%else%}
+  <h1>{{questions.count}}</h1>
+  {% for question in questions %}
+    <a href="{% url 'polls:detail' qid=question.pk %}"><h1>{{question.title}}</h1></a>
+    <p>{{question.ques_type}}</p><br>
+  {% empty %}
+    <h1>Извините, но новых опросов нет</h1>
+  {%endfor%}
+
+{%endif%}
+{% endblock %}
