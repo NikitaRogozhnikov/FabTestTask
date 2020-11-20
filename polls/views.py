@@ -22,16 +22,6 @@ class PollsView(APIView):
         #c_serializer=ChoiceSerializer(choices)
         return Response({"questions":q_serializer.data})
 
-class DetailPolsView(APIView):
-    def get_object(self, pk):
-        
-        return User.objects.get(pk=pk)
-
-
-    def get(self, request, pk, format=None):
-    
-        serializer = DetailUserSerializer(User.objects.get(pk=pk))
-        return Response(serializer.data)
     
 class MainView(TemplateView):
     utc=pytz.UTC
